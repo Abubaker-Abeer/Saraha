@@ -3,21 +3,23 @@ import crypto from 'crypto';
 const transporter = nodemailer.createTransport({
   service:'gmail',
    auth: {
-     user: "abeerabubaker2001@gmail.com",
-     pass: "tsvq gead qtcm pihz",
+     user:   process.env.user,
+     pass:  process.env.pass,
    },
     tls: {
     rejectUnauthorized: false 
   }
  });
-export async function sendemail(to){
+export async function sendemail(to,subject,html){
        const info = await transporter.sendMail({
          from: '"Abeer Abubaker" <abeerabubaker2001@gmail.com>', 
          to, 
-         subject: "welcom", 
-         html: "<bh2>Hello world?</h2>", 
+         subject, 
+         html, 
        });
 }
+ 
+
 export const sendResetPasswordEmail = async (email, resetCode) => {
   const mailOptions = {
     from: 'abeerabubaker2001@gmail.com', // Your email address
